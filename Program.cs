@@ -1,5 +1,7 @@
-
-using Demo.Api;
+using Demo.Api.ExtensionServices;
+using Demo.Api.HostedServices;
+using Demo.Api.Services.Interfaces;
+using Demo.Api.Services.Providers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +11,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.RegisterApiActor();
+builder.Services.AddSingleton<ISocketService, SocketService>();
+builder.Services.RegisterActor();
+builder.Services.AddHostedService<WebSocketStartupHostedService>();
+
 
 var app = builder.Build();
 
@@ -19,8 +24,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

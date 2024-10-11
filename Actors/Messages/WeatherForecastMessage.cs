@@ -1,7 +1,9 @@
-﻿namespace Demo.Api.Actors.Messages
+﻿using Demo.Api.Models;
+
+namespace Demo.Api.Actors.Messages
 {
-    public struct WeatherForecastMessage(WeatherForecast[] weatherForecast)
+    public struct WeatherForecastMessage(WeatherForecast[] weatherForecasts)
     {
-        public WeatherForecast[] WeatherForecast { get; set; } = weatherForecast;
+        public WeatherForecast[] WeatherForecasts { get; set; } = weatherForecasts;
     }
 }

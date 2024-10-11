@@ -1,6 +1,21 @@
-@Demo.Api_HostAddress = http://localhost:5252
+@baseurl = http://localhost:7053
+@channel = "http://localhost:7053"
 
-GET {{Demo.Api_HostAddress}}/weatherforecast/
+GET {{baseurl}}/weatherforecast/
 Accept: application/json
 
-###
+### Get Weather Forecast
+
+GET {{baseurl}}/weatherforecast/LocationData
+Accept: application/json
+
+### Get Location Data
+
+POST {{baseurl}}/api/WebSocket/send-channel-message
+Accept: application/json
+Content-Type: application/json
+
+{{channel}}
+
+
+### Send Channel Message
